@@ -8,7 +8,7 @@
     tools:context=".StudentsActivity">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/StudentsActivityTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -22,7 +22,7 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/tableLayout">
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityTabLayout">
 
         <FrameLayout
             android:layout_width="match_parent"
