@@ -1,6 +1,8 @@
 package com.alten.javsalper.practice2
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -17,19 +19,26 @@ class StudentsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_student)
 
         val view_pager = findViewById<ViewPager2>(R.id.view_pager)
-        val tabLayout:TabLayout=findViewById(R.id.tabLayout)
+        val tabLayout:TabLayout=findViewById(R.id.StudentsActivityTabLayout)
         val adapter = ViewPagerAdapter(supportFragmentManager,lifecycle)
         view_pager.adapter = adapter
-
+        val calendarButton =findViewById<ImageView> (R.id.imgcalendarButtonActivityStudentsView)
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-        for (i in 0 until NUM_FRAGMENTS) {
-            val fragment: StudentsFragment = StudentsFragment.newInstance(student = [i])
+        for (i in 0 until 13) {
+            val fragment: StudentsFragment = StudentsFragment.newInstance(student = Student(dni= " ", name = " ", surname = " ", email = " ", center = "", city = "", photoUrl = "", tutor = ""))
             fragmentTransaction.add(androidx.fragment.R.id.fragment_container_view_tag, fragment)
         }
 
         fragmentTransaction.commit()
+
+        calendarButton.setOnClickListener {
+
+        val intent = Intent(this, AttendanceActivity::class.java)
+
+            startActivity(intent)
+        }
     }
 
 
@@ -181,8 +190,6 @@ class StudentsActivity : AppCompatActivity() {
             students.add(student13)
         }
 
-
-
-    }
+}
 
 
