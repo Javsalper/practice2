@@ -24,15 +24,13 @@ class StudentsActivity : AppCompatActivity() {
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-        for (i in 0 until 13) {
+        for (i in 0 until NUM_FRAGMENTS) {
             val fragment: StudentsFragment = StudentsFragment.newInstance(student = [i])
             fragmentTransaction.add(androidx.fragment.R.id.fragment_container_view_tag, fragment)
         }
 
         fragmentTransaction.commit()
     }
-
-
 
 
         private fun initializeStudents() {

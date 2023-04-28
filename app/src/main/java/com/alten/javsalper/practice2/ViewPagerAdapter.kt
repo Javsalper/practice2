@@ -11,25 +11,31 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): 
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when(position){
-            0->{
-                StudentsFragment.newInstance(Student(dni = ""))//de la posicion del dni del estudiante sin usar when
-            }
-            1->{
-                StudentsFragment.newInstance(Student(dni = ""))
-            }
-            2->{
-                StudentsFragment.newInstance(Student(dni = ""))
-            }
-            3->{
-                StudentsFragment.newInstance(Student(dni = ""))
-            }
-            4->{
-                StudentsFragment.newInstance(Student(dni = ""))
-            }
-            else->{
-                Fragment()
-            }
+        val studentMap = mapOf(
+            "302542130S" to 0,
+            "302214409A" to 1,
+            "302102102X" to 2,
+            "302908523C" to 3,
+            "301231760G" to 4,
+            "302536840B" to 5,
+            "30244710D" to 6,
+            "30274910H" to 7,
+            "30255117M" to 8,
+            "30397320N" to 9,
+            "20104431Q" to 10,
+            "10199699P" to 11,
+            "30588332Z" to 12,
+        )
+
+        val dni = "" // DNI del estudiante que desea encontrar
+
+        val studentPosition = studentMap[dni] ?: -1 // Obtiene la posición del estudiante si se encuentra en el mapa, de lo contrario devuelve -1
+
+        return if (studentPosition >= 0) {
+            StudentsFragment.newInstance(Student(dni = dni, name = dni, surname = dni,email =dni,center =dni,city =dni, photoUrl = dni,tutor =dni))
+        } else {
+            Fragment()
         }
     }
+
 }

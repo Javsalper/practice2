@@ -6,8 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".StudentsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <ImageButton
         android:id="@+id/imgStudentsActivityUserView"
         android:layout_width="80dp"
@@ -34,6 +32,18 @@
         app:layout_constraintTop_toBottomOf="@id/imgStudentsActivityUserView" />
 
     <TextView
+        android:id="@+id/StudentsActivityLabelNameStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelName" />
+
+    <TextView
         android:id="@+id/StudentsActivityLabelSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +54,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelName" />
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelNameStudent" />
+
+    <TextView
+        android:id="@+id/StudentsActivityLabelSurnameStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelSurname" />
 
     <TextView
         android:id="@+id/StudentsActivityLabelEmail"
@@ -57,8 +79,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelSurname" />
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelSurnameStudent" />
 
+    <TextView
+        android:id="@+id/StudentsActivityLabelEmailStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelEmail" />
     <TextView
         android:id="@+id/StudentsActivityLabelCity"
         android:layout_width="wrap_content"
@@ -70,7 +103,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelEmail" />
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelEmailStudent" />
+
+    <TextView
+        android:id="@+id/StudentsActivityLabelCityStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelCity" />
 
     <TextView
         android:id="@+id/StudentsActivityLabelCenter"
@@ -83,7 +128,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelCity" />
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelCityStudent" />
+
+    <TextView
+        android:id="@+id/StudentsActivityLabelCenterStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelCenter" />
 
     <TextView
         android:id="@+id/StudentsActivityLabelTutor"
@@ -96,17 +153,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelCenter" />
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelCenterStudent" />
 
-    <ImageButton
-        android:id="@+id/imgcalendarButtonActivityStudentsView"
-        android:layout_width="80dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="632dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/baseline_calendar_month_24"
+    <TextView
+        android:id="@+id/StudentsActivityLabelTutorStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityLabelTutor" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
