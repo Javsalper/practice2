@@ -12,18 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="0dp"
+        android:backgroundTint="@color/teal_700"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/StudentsActivityViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/StudentsActivityTabLayout"/>
-
+        app:layout_constraintTop_toBottomOf="@id/StudentsActivityTabLayout"
+        tools:layout_editor_absoluteX="-196dp" />
 
     <ImageButton
         android:id="@+id/imgcalendarButtonActivityStudentsView"

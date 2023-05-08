@@ -8,5 +8,5 @@ class Student(
    val center: String,
    val city: String,
    val photoUrl: String,
-   val tutor: String
+   val tutor: String,
 ): Person(name,surname)
