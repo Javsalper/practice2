@@ -5,5 +5,5 @@ data class Attendance(
     val dayOfMonth: Int,
     val month: String,
     val year: Int,
-    var attendanceStatus: String
+    val attendanceStatus: String
 )
