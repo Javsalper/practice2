@@ -30,26 +30,16 @@ data class Month (
             var currentDate = startDate
             var currentMonth = " "
             var weekCount = 0
-            var daytype = " "
-            var textView = " "
+
 
             while (!currentDate.isAfter(endDate)) {
                 val dayOfWeek = currentDate.dayOfWeek
                 val dayType: String
                 val textColor: String
 
-                // textView.setTextColor(
-                when (daytype) {
-                    "Formación" -> R.color.green
-                    "Vacaciones" -> R.color.red
-                    "Centro" -> R.color.yellow
-                    "Descanso" -> R.color.blue
-                    else -> R.color.black
-                }
-                //)
                 when {
                     dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY -> {
-                        dayType = "Rest"
+                        dayType = "Descanso"
                         textColor = "Blue"
                     }
 
@@ -58,17 +48,17 @@ data class Month (
                         4,
                         7
                     ) || currentDate in LocalDate.of(2023, 4, 24)..LocalDate.of(2023, 5, 1) -> {
-                        dayType = "Holidays"
+                        dayType = "Vacaciones"
                         textColor = "Red"
                     }
 
                     weekCount % 2 == 0 && dayOfWeek == DayOfWeek.THURSDAY -> {
-                        dayType = "Center"
+                        dayType = "Centro"
                         textColor = "Yellow"
                     }
 
                     else -> {
-                        dayType = "Work"
+                        dayType = "Formación"
                         textColor = "Green"
                     }
 
@@ -194,40 +184,6 @@ data class Month (
 
             return months
         }
-
-       /* @RequiresApi(Build.VERSION_CODES.O)
-        fun DayOfWeekState(day: Int, month: Int, year: Int): String {
-            var letterD = " "
-            /*Calendar c = Calendar.getInstance()
-            c.set(ano, mes, dia, 0, 0, 0)
-            nD=c.get(Calendar.DAY_OF_WEEK)*/
-            val timezone: TimeZone = TimeZone.getDefault()
-            val calendar: Calendar = GregorianCalendar(timezone)
-            calendar.set(year, month, day)
-            val daysInMonth: Int = calendar.get(Calendar.DAY_OF_WEEK)
-            val startDate = LocalDate.of(2023, 3, 27)
-            val endDate = LocalDate.of(2023, 6, 14)
-            Log.i(
-                "result",
-                "diaSemana: " + daysInMonth + " dia:" + day + " mes:" + month + "año:" + year
-            )
-            when (daysInMonth) {
-                0 -> letterD = "L"
-                1 -> letterD = "M"
-                2 -> letterD = "X"
-                3 -> letterD = "J"
-                4 -> letterD = "V"
-                5 -> letterD = "S"
-                6 -> letterD = "D"
-            }
-            for (startDate in 1..31) {
-                val dayOfWeekState = DayOfWeekState(day, month, year)
-                println(dayOfWeekState)
-
-            }
-            return letterD
-
-        }*/
        @RequiresApi(Build.VERSION_CODES.O)
        fun DayOfWeekState(date: LocalDate): String {
            val letterD: String

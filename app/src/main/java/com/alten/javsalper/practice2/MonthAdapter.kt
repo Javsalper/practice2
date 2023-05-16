@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -27,10 +28,20 @@ class MonthAdapter(private val days: List<Month>, private val islinearmode:Boole
             }
             if (islinearmode) {
                 textView.text = month.day + " " + month.month + " " + month.dayType
-                //textView.setTextColor()
+
             }else{
                 textView.text = month.shortDay
             }
+
+            val textColor = when (month.dayType) {
+                "Formación" -> ContextCompat.getColor(textView.context, R.color.green)
+                "Vacaciones" -> ContextCompat.getColor(textView.context, R.color.red)
+                "Centro" -> ContextCompat.getColor(textView.context, R.color.yellow)
+                "Descanso" -> ContextCompat.getColor(textView.context, R.color.blue)
+                else -> ContextCompat.getColor(textView.context, R.color.black)
+            }
+
+            textView.setTextColor(textColor)
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthViewHolder {
