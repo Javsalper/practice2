@@ -22,5 +22,14 @@
      android:layout_row="1"
      android:layout_column="0"
      android:layout_columnSpan="2"
-     android:layout_marginTop="1dp"/>
+     android:layout_marginTop="40dp"
+     android:text="a"
+     android:tooltipText="hola"/>
+ <TextView
+     android:id= "@+id/monthDays"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="h"
+     android:tooltipText="adios"/>
+
 </GridLayout>

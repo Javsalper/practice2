@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alten.javsalper.practice2.Month.Companion.CadizCalendar
@@ -36,15 +37,55 @@ class AttendanceActivity : AppCompatActivity() {
        val student = students[studentPosition]
        val daysCalendar = SevilleCalendar()
        val dayCalendar = CadizCalendar()
+       //val shortDay = DayOfWeekState(day, month,year)
 
-     //  val colapsingtoolbar = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbar)
-        val textView = findViewById<TextView>(R.id.student_name_textview)
+      //  val colapsingtoolbar = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbar)
+        val textView = findViewById<TextView>(R.id.AttendenceActivityTextviewNameAndSurname)
         textView.text= " "+ students [studentPosition].name+" "+ students [studentPosition].surname
-
+      val calendarModeButton = findViewById<ImageView>(R.id.imgVerticalButtonActivityAttendanceActivityView)
       val studentPhoto = findViewById<ImageView>(R.id.imgAttendanceActivityUserView)
       val recycler = findViewById<RecyclerView>(R.id.recyclerView)
-        recycler.layoutManager= LinearLayoutManager(this)
-        recycler.adapter = MonthAdapter(daysCalendar)
+
+        var islinearMode: Boolean = true
+        val linearLayoutManager = LinearLayoutManager(this)
+        recycler.layoutManager = linearLayoutManager
+
+        val monthItemListener = object: MonthItemListener {
+            override fun onClickListener(position: Int) {
+                //return onClickListener(position)
+            }
+
+            override fun onLongClickListener(position: Int): Boolean {
+                //  return super.onLongClickListener(position)
+                return true
+            }
+
+        }
+
+        recycler.adapter = MonthAdapter(daysCalendar,islinearMode, monthItemListener)
+
+        calendarModeButton.setOnClickListener {
+
+            if (islinearMode) {
+
+                val gridLayoutManager = GridLayoutManager(this, 5)
+                recycler.layoutManager = gridLayoutManager
+               // VerticalButton.text = "Cambiar a Linear"
+            } else {
+
+                val linearLayoutManager = LinearLayoutManager(this)
+                recycler.layoutManager = linearLayoutManager
+                //VerticalButton.text = "Cambiar a Grid"
+            }
+
+            islinearMode = !islinearMode
+            recycler.adapter = MonthAdapter(daysCalendar,islinearMode, monthItemListener)
+        }
+
+        // recycler.layoutManager= LinearLayoutManager(this)
+
+
+
         //recycler.adapter = MonthAdapter(students)
 
        // colapsingtoolbar.title = Student.creatUser() [StudentPosition].name + Student.creatUser()[StudentPosition].lastName
@@ -54,7 +95,6 @@ class AttendanceActivity : AppCompatActivity() {
 
       }
      // val volverButton = findViewById<Button> (R.id.buttonregresar)
-
 
 
 
