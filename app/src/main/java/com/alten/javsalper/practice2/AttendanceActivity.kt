@@ -1,6 +1,7 @@
 package com.alten.javsalper.practice2
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.ImageView
@@ -45,7 +46,7 @@ class AttendanceActivity : AppCompatActivity() {
       val calendarModeButton = findViewById<ImageView>(R.id.imgVerticalButtonActivityAttendanceActivityView)
       val studentPhoto = findViewById<ImageView>(R.id.imgAttendanceActivityUserView)
       val recycler = findViewById<RecyclerView>(R.id.recyclerView)
-
+      val returnButton = findViewById<ImageView>(R.id.imgAttendanceActivityReturn)
         var islinearMode: Boolean = true
         val linearLayoutManager = LinearLayoutManager(this)
         recycler.layoutManager = linearLayoutManager
@@ -93,8 +94,13 @@ class AttendanceActivity : AppCompatActivity() {
             .load(students[studentPosition].photoUrl)
             .into(studentPhoto)
 
-      }
-     // val volverButton = findViewById<Button> (R.id.buttonregresar)
+        returnButton.setOnClickListener {
+
+            val intent = Intent(this, StudentsActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        }
 
 
 
