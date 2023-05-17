@@ -19,6 +19,7 @@ class MonthAdapter(private val days: List<Month>, private val islinearmode:Boole
             textView = view.findViewById(R.id.itemAttendanceDayTextView)
         }
 
+
         fun bind(month: Month,islinearmode: Boolean,listener: MonthItemListener){
             textView.setOnClickListener{
                 listener.onClickListener(adapterPosition)
