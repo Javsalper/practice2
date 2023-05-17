@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alten.javsalper.practice2.Month.Companion.CadizCalendar
 import com.alten.javsalper.practice2.Month.Companion.SevilleCalendar
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 
 const val EXTRA_STUDENT_POSITION = "position_student"
 
@@ -65,10 +67,43 @@ class AttendanceActivity : AppCompatActivity() {
             }
 
             override fun onLongClickListener(position: Int): Boolean {
-                //  return super.onLongClickListener(position)
-                return true
-            }
 
+                var clickedMonth = daysCalendar[position]
+
+                val dialog = AlertDialog.Builder(applicationContext)
+                    .setTitle("Modificar asistencia")
+                    .setMessage("Seleccione la nueva asistencia para el día ${clickedMonth.month} ${clickedMonth.day}:")
+                    .setPositiveButton("Formación") { dialog, _ ->
+                        clickedMonth.dayType = "Formación"
+                        showUndoSnackbar(clickedMonth)
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton("Vacaciones") { dialog, _ ->
+                        clickedMonth.dayType = "Vacaciones"
+                        showUndoSnackbar(clickedMonth)
+                        dialog.dismiss()
+                    }
+                    .setNeutralButton("Descanso") { dialog, _ ->
+                        clickedMonth.dayType = "Descanso"
+                        showUndoSnackbar(clickedMonth)
+                        dialog.dismiss()
+                    }
+                    .setCancelable(true)
+                    .create()
+
+                dialog.show()
+                return true
+
+            }
+            fun showUndoSnackbar(clickedMonth: Month) {
+                val message = "Asistencia modificada para el día ${clickedMonth.month} ${clickedMonth.day}"
+                val snackbar = Snackbar.make(recycler, message, Snackbar.LENGTH_LONG)
+                snackbar.setAction("Deshacer") {
+
+                    clickedMonth.dayType = clickedMonth.day
+                }
+                snackbar.show()
+            }
         }
 
         recycler.adapter = MonthAdapter(daysCalendar, islinearMode, monthItemListener)
@@ -90,6 +125,7 @@ class AttendanceActivity : AppCompatActivity() {
             islinearMode = !islinearMode
             recycler.adapter = MonthAdapter(daysCalendar, islinearMode, monthItemListener)
         }
+
 
         // recycler.layoutManager= LinearLayoutManager(this)
 

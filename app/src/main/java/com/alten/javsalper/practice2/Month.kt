@@ -1,10 +1,6 @@
 package com.alten.javsalper.practice2
 
-import android.icu.util.Calendar
-import android.icu.util.GregorianCalendar
-import android.icu.util.TimeZone
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -15,7 +11,7 @@ import java.util.Locale
 data class Month (
     val day: String,
     val month: String,
-    val dayType: String,
+    var dayType: String,
     val textColor: String,
     val shortDay: String
     ){
