@@ -43,6 +43,7 @@ class MonthAdapter(private val days: List<Month>, private val islinearmode:Boole
 
             textView.setTextColor(textColor)
         }
+
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthViewHolder {
         val user: View = LayoutInflater
@@ -51,11 +52,24 @@ class MonthAdapter(private val days: List<Month>, private val islinearmode:Boole
         return MonthViewHolder(user)
     }
 
+    private val undoneChanges: MutableList<Pair<Month, String>> = mutableListOf()
    override fun onBindViewHolder(holder: MonthViewHolder, position: Int) {
-        holder.bind(days[position],islinearmode,listener)
+       val month = days[position]
+       holder.bind(month, islinearmode, listener)
+
+    /*   val undoneChange = undoneChanges.find { it.first == month }
+       if (undoneChange != null) {
+           month.dayType = undoneChange.second
+           undoneChanges.remove(undoneChange)
+       }*/
     }
 
     override fun getItemCount(): Int {
         return days.size
+    }
+    fun updateDayType(month: Month, newDayType: String) {
+
+        month.dayType = newDayType
+        notifyDataSetChanged()
     }
 }

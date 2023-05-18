@@ -66,26 +66,31 @@ class AttendanceActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
             }
 
+            private var lastModifiedMonth: Month? = null
+
             override fun onLongClickListener(position: Int): Boolean {
+                val clickedMonth = daysCalendar[position]
+                lastModifiedMonth = clickedMonth.copy()
 
-                var clickedMonth = daysCalendar[position]
-
-                val dialog = AlertDialog.Builder(applicationContext)
+                val dialog = AlertDialog.Builder(this@AttendanceActivity)
                     .setTitle("Modificar asistencia")
                     .setMessage("Seleccione la nueva asistencia para el día ${clickedMonth.month} ${clickedMonth.day}:")
                     .setPositiveButton("Formación") { dialog, _ ->
-                        clickedMonth.dayType = "Formación"
-                        showUndoSnackbar(clickedMonth)
+                        val previousDayType = clickedMonth.dayType
+                        (recycler.adapter as MonthAdapter).updateDayType(clickedMonth, "Formación")
+                        showUndoSnackbar(clickedMonth, previousDayType)
                         dialog.dismiss()
                     }
                     .setNegativeButton("Vacaciones") { dialog, _ ->
-                        clickedMonth.dayType = "Vacaciones"
-                        showUndoSnackbar(clickedMonth)
+                        val previousDayType = clickedMonth.dayType
+                        (recycler.adapter as MonthAdapter).updateDayType(clickedMonth, "Vacaciones")
+                        showUndoSnackbar(clickedMonth, previousDayType)
                         dialog.dismiss()
                     }
                     .setNeutralButton("Descanso") { dialog, _ ->
-                        clickedMonth.dayType = "Descanso"
-                        showUndoSnackbar(clickedMonth)
+                        val previousDayType = clickedMonth.dayType
+                        (recycler.adapter as MonthAdapter).updateDayType(clickedMonth, "Descanso")
+                        showUndoSnackbar(clickedMonth,previousDayType)
                         dialog.dismiss()
                     }
                     .setCancelable(true)
@@ -93,17 +98,28 @@ class AttendanceActivity : AppCompatActivity() {
 
                 dialog.show()
                 return true
-
             }
-            fun showUndoSnackbar(clickedMonth: Month) {
+           /* private fun undoLastModification() {
+                lastModifiedMonth?.let {
+                    val adapter = recycler.adapter as? MonthAdapter
+                    val position = daysCalendar.indexOf(it)
+                    if (position != -1) {
+                        adapter?.updateDayType(position, it.dayType)
+                    }
+                }
+            }*/
+
+            fun showUndoSnackbar(clickedMonth: Month, previousDayType: String) {
                 val message = "Asistencia modificada para el día ${clickedMonth.month} ${clickedMonth.day}"
                 val snackbar = Snackbar.make(recycler, message, Snackbar.LENGTH_LONG)
                 snackbar.setAction("Deshacer") {
+                    (recycler.adapter as MonthAdapter).updateDayType(clickedMonth,previousDayType)
 
-                    clickedMonth.dayType = clickedMonth.day
                 }
                 snackbar.show()
             }
+
+
         }
 
         recycler.adapter = MonthAdapter(daysCalendar, islinearMode, monthItemListener)
